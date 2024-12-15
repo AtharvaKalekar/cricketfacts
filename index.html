@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Facts Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            color: #1a237e;
+            margin-bottom: 2rem;
+        }
+
+        .fact-box {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #fact-display {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        #fact-number {
+            color: #666;
+            font-style: italic;
+        }
+
+        #generate-btn {
+            background-color: #1a237e;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #generate-btn:hover {
+            background-color: #283593;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cricket Facts Generator</h1>
+        <div class="fact-box">
+            <p id="fact-display">Click the button to generate a random cricket fact!</p>
+            <span id="fact-number"></span>
+        </div>
+        <button id="generate-btn">Generate Fact</button>
+    </div>
+
+    <script>
+        const cricketFacts = {
+            "cricket_facts": [
+                {"id": 1, "fact": "Cricket originated in England during the 16th century"},
+                {"id": 2, "fact": "The longest format of cricket, Test matches, can last up to 5 days"},
+                // ... Copy all 50 facts from the JSON data here ...
+                {"id": 49, "fact": "The term 'duck' comes from the egg's resemblance to a duck's egg"},
+                {"id": 50, "fact": "The first cricket match in South Africa was played in 1808"}
+            ]
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const factDisplay = document.getElementById('fact-display');
+            const factNumber = document.getElementById('fact-number');
+            const generateBtn = document.getElementById('generate-btn');
+
+            function getRandomFact() {
+                const facts = cricketFacts.cricket_facts;
+                const randomIndex = Math.floor(Math.random() * facts.length);
+                const selectedFact = facts[randomIndex];
+                
+                factDisplay.textContent = selectedFact.fact;
+                factNumber.textContent = `Fact #${selectedFact.id}`;
+            }
+
+            generateBtn.addEventListener('click', getRandomFact);
+            
+            // Generate a random fact when the page loads
+            getRandomFact();
+        });
+    </script>
+</body>
+</html>
